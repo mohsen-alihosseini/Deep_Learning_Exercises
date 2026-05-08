@@ -102,50 +102,25 @@ class ImageGenerator:
             labels.append(label)
 
         return images,labels
+        # return images, labels, batch_now, self.batch_number, self.epoch_number
 
 
-        # output = self.label_list[(self.batch_size*self.batch_number): (self.batch_size*(self.batch_number+1))]
-        # self.batch_number += 1
-        # if self.batch_number == np.ceil((len(self.label_list)/self.batch_size)-0.001):
-        #         output += self.label_list[:self.batch_size-len(output)]
-        #         self.batch_number = 0
-        #         self.next_epoch = True
-        #         if self.shuffle:
-        #             np.random.shuffle(self.label_list)
-        #             # print(self.label_list)
-        #     # print('*'*2,output)
-        #     # if self.batch_number == 0: print('epoch ended')
-        # images = np.zeros(tuple([self.batch_size]+self.image_size))
-        # labels = []
-
-        # for i,(im,l) in enumerate(output):
-        #     img = skimage.transform.resize(np.load(self.file_path+im+'.npy'), tuple(self.image_size))
-        #     if self.rotation or self.mirroring:
-        #         img = self.augment(img)
-        #     images[i] = img
-        #     labels.append(l)
-        # return images, labels
 
     def augment(self,img):
         # this function takes a single image as an input and performs a random transformation
         # (mirroring and/or rotation) on it and outputs the transformed image
         #TODO: implement augmentation function
         if self.mirroring:
-            r = np.random.randint(0,3)
+            r = np.random.randint(0,2) #int 0 or 1
             # print(r)
-            # plt.imshow(img)
-            # plt.show()
             if r==0:
-                img = img[::-1, :, :] # first dimension is flipped hence vertical mirroring
+                img = img[::-1, :, :]           # vertical mirroring
             elif r==1:
-                img = img[:, ::-1, :] # second dimension is flipped hence horizontal mirroring
+                img = img[:, ::-1, :]           #  horizontal mirroring
             # plt.imshow(img)
             # plt.show()
         if self.rotation:
             r = np.random.randint(0,4)
-            # print(r)
-            # plt.imshow(img)
-            # plt.show()
             for i in range(r):
                 img = np.rot90(img)
             # plt.imshow(img)
@@ -154,7 +129,7 @@ class ImageGenerator:
         return img
 
     def current_epoch(self):
-        # return the current epoch number
+        #returns an integer of the current epoch
         return self.epoch_number
 
     def class_name(self, x):
@@ -166,10 +141,11 @@ class ImageGenerator:
         # batch of images and labels and visualizes it.
         #TODO: implement show method
         images, labels = self.next()
-        fig = plt.figure()
+        # images, labels, batch_now, self.batch_number, self.epoch_number = self.next()
+        fig = plt.figure(figsize=(10,10))
+        
         for i, img in enumerate(images,1):
             fig.add_subplot(int(np.ceil(self.batch_size/3)), 3, i, xticks=[], yticks=[], title=self.class_name(labels[i-1])).imshow(img)
-            # axss.set_title(self.class_name(labels[i]))
         plt.show()
 
 
