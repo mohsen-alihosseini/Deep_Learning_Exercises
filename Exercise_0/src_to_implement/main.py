@@ -19,11 +19,20 @@ spect.draw()
 spect.show()
 
 #_________Generator
-g = generator.ImageGenerator('./exercise_data/', './Labels.json', 12, [128, 128, 3], rotation=True, mirroring=True, shuffle=False)
+g = generator.ImageGenerator('./exercise_data/', './Labels.json', 10, [128, 128, 3], rotation=True, mirroring=True, shuffle=False)
 
 g.next()
 g.show()
 # print(g.batch_number)
+# print(g.epoch_number)
+
+
+
+
+
+
+
+
 
 # g.next()
 # g.show()
