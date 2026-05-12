@@ -41,8 +41,8 @@ class Circle():
         # print(self.position)
         c_x,c_y = self.position #circle center
         # print(x,y)
-        self.output = np.zeros((self.resolution,self.resolution)) ##all zeroo
-        self.output[(x-c_x)**2+(y-c_y)**2<self.radius**2]=1      ## all zero except where condition true
+        self.output = np.zeros((self.resolution,self.resolution))   ##all zeroo
+        self.output[(x-c_x)**2+(y-c_y)**2<self.radius**2]=1         ## all zero except where condition true
         # print(self.output)
         return np.array(self.output, copy=True)
 
@@ -59,7 +59,7 @@ class Spectrum():
 
     # Top-Left (Blue): Red=0, Green=0, Blue=1
     # Top-Right (Red): Red=1, Green=0, Blue=0
-    # Bottom-Left (Cyan): Red=0, Green=1, Blue=1
+    # Bottom-Left (nili): Red=0, Green=1, Blue=1
     # Bottom-Right (Yellow): Red=1, Green=1, Blue=0
 
     # Red increases from left to right (x-axis)
