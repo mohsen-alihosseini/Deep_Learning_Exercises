@@ -17,3 +17,5 @@ class SoftMax(Base.BaseLayer):
     def backward(self, error_tensor):
         error_tensor = error_tensor - np.sum(np.multiply(error_tensor, self.output), axis = 1).reshape((-1,1))
         return np.multiply(self.output, error_tensor)
+    
+    

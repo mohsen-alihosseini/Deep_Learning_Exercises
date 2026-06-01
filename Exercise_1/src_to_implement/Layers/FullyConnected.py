@@ -43,3 +43,4 @@ class FullyConnected(Base.BaseLayer):
             return new_weights
         else:
             return self.weights
+        

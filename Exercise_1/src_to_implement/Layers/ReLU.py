@@ -13,3 +13,4 @@ class ReLU(Base.BaseLayer):
     
     def backward(self, error_tensor):
         return np.multiply(np.where(self.input > 0, 1, 0), error_tensor)
+    
